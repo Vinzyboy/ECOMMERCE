@@ -2,7 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-
 @layer base {
   h1 {
     @apply text-[clamp(35px,_6vw,_50px)];
@@ -24,8 +23,33 @@
   }
 }
 
-@layer  components{
+@layer components {
   .container {
-    @apply max-w-[1900px] mx-auto px-4;
+    @apply max-w-[1880px] mx-auto px-4;
+  }
+  .new-collection-card p {
+    @apply text-gray-500 font-semibold;
+  }
+  .new-collection-card img {
+    @apply pb-2;
+  }
+  .footer-box li {
+    @apply text-gray-400 pb-1 font-semibold;
+  }
+
+  .toggle-menu span{
+    @apply h-[3px] w-5 block mb-1 transition-all bg-black;
+  }
+  .toggle-menu.active span:first-child{
+    @apply rotate-[45deg] translate-y-3;
+  }
+  .toggle-menu.active span:nth-child(2){
+    @apply opacity-0;
+  }
+  .toggle-menu.active span:last-child{
+    @apply rotate-[-45deg] translate-y-[-2px];
+  }
+  .header-wrapper li{
+    @apply text-xl mb-10 md:mb-0;
   }
 }

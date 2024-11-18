@@ -3,14 +3,17 @@ import Banner from './Banner'
 import Footer from './Footer'
 import Header from './Header'
 import NewCollection from './NewCollection'
-import CardItem from './CardItem'
+import Wedding from './Wedding'
+import Category from './Category'
 
 const Homepage = () => {
   return (
     <>
       <Header />
           <Banner />
-          <NewCollection />
+      <NewCollection />
+      <Wedding />
+      <Category/>
       <Footer />
     </>
   );

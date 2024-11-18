@@ -1,40 +1,72 @@
-import { Search, ShoppingBasket } from "lucide-react";
+import { Search, ShoppingBag } from "lucide-react";
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
+import { imgPath } from "../helpers/functions-general";
 
 const Header = () => {
+  const [scrollPosition, setScollPosition] = React.useState(0);
+  const [isOpen, setIsOpen] = React.useState(false);
+  React.useEffect(() => {
+    window.addEventListener("scroll", () => setScrollPosition(scrollY));
+    return window.removeEventListener("scroll", () =>
+      setScrollPosition(scrollY)
+    );
+  }, []);
   return (
-    <header>
+    <header
+      className={`${
+        scrollPosition > 150 ? "bg-white" : " "
+      } fixed z-50 bg-white w-full top-0 left-0`}
+    >
       <div className="container">
-        <div className="flex items-center justify-between">
-          <ul className="flex gap-5 font-semibold">
-            <li>Men</li>
-            <li>Woman</li>
-            <li>Kids</li>
-            <li>New & Featured</li>
-            <li>Gift</li>
-          </ul>
-
-          <div className="logo ">
-            <h1 className="font-bold">TULOS</h1>
+        <div className="toggle flex justify-between items-center justify-center py-5">
+          <div className="header-logo md:hidden block">
+            <img src={`${imgPath}/headerlogo.png`} alt="" />
           </div>
-
-          <ul className="flex gap-5">
+          <button
+            className={`${isOpen ? "active" : ""} toggle-menu md:hidden`}
+            onClick={() => setIsOpen(!isOpen)}
+          >
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+        </div>
+        <nav
+          className={`fixed md:gap-10 md:grid md:grid-cols-[4fr,_4fr,_1fr]  md:w-[2430px] mx-auto items-center py-5 md:static w-full  h-screen md:h-auto top-[9rem]left-0 bg-white md:bg-transparent  md:w-auto ${
+            isOpen ? "text-black block" : "hidden md:block"
+          }`}
+        >
+          <ul className="md:flex md:flex-row flex flex-col gap-10 translate-x-[50px] md:translate-x-0 translate-y-[50px] md:translate-y-0 w-[75%] md:w-full md:w-auto font-semibold">
             <li>
-              <button>
-                <Search strokeWidth={1} />
-              </button>
+              <NavLink>Men</NavLink>
             </li>
             <li>
-              <button>
-                <ShoppingBasket strokeWidth={1} />
-              </button>
+              <NavLink>Women</NavLink>
             </li>
             <li>
-              <Link to="/login">Login</Link>
+              <NavLink>Kids</NavLink>
+            </li>
+            <li>
+              <NavLink>News & Featured</NavLink>
+            </li>
+            <li>
+              <NavLink>Gift</NavLink>
             </li>
           </ul>
-        </div>
+          <div className="header-logo hidden md:block">
+            <img src={`${imgPath}/headerlogo.png`} alt="" />
+          </div>
+          <div className="right-menu flex gap-5 translate-x-[50px] md:translate-x-0 translate-y-[50px] md:translate-y-0 w-[75%] md:w-full  mt-10 md:mt-0 ">
+            <button>
+              <Search strokeWidth={1} />
+            </button>
+            <button>
+              <ShoppingBag />
+            </button>
+            <Link>Login</Link>
+          </div>
+        </nav>
       </div>
     </header>
   );

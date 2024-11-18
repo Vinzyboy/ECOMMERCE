@@ -43,16 +43,16 @@ const NewCollection = () => {
 
   return (
     <section>
-      <div className="container">
-        <div className="title pt-20 text-center items-center">
-          <h3>NEW COLLECTION</h3>
-          <p className="">
+      <div className="container pt-40">
+        <div className="title text-center items-center">
+          <h1 className="font-bold">NEW COLLECTION</h1>
+          <p className="text-gray-500 font-semibold">
             Our latest collection, where classic and contemporary styles
             converge in perfect harmony
           </p>
         </div>
         <div
-          className="newcollection_wrapper grid grid-cols-3 pt-10
+          className="newcollection_wrapper md:grid md:grid-cols-3 py-10 gap-10 
         "
         >
           {newCollectionArray.map((item, key) => (
